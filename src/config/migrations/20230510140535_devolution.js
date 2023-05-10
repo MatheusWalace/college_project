@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.increments("id").primary()
     table.integer("id_emprestimo").notNullable().unsigned()
     table.date("data_devolucao").notNullable()
-    table.foreign("id_emprestimo").references("emprestimos.id")
+    // table.foreign("id_emprestimo").references("emprestimos.id")
   })
 }
 

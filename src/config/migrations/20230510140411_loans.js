@@ -10,8 +10,8 @@ exports.up = function (knex) {
     table.date("data_emprestimo").notNullable()
     table.date("data_devolucao_prevista").notNullable()
     table.float("multa")
-    table.foreign("id_livro").references("livros.id")
-    table.foreign("id_usuario").references("usuarios.id")
+    // table.foreign("id_livro").references("livros.id")
+    // table.foreign("id_usuario").references("usuarios.id")
   })
 }
 

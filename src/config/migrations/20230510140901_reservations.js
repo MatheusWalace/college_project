@@ -9,8 +9,8 @@ exports.up = function (knex) {
     table.integer("id_usuario").notNullable().unsigned()
     table.date("data_reserva").notNullable()
     table.date("data_disponibilidade").notNullable()
-    table.foreign("id_livro").references("livros.id")
-    table.foreign("id_usuario").references("usuarios.id")
+    // table.foreign("id_livro").references("livros.id")
+    // table.foreign("id_usuario").references("usuarios.id")
   })
 }
 

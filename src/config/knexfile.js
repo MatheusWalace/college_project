@@ -1,14 +1,13 @@
-// Update with your config settings.
 require("dotenv").config()
 const path = require("path")
 
 module.exports = {
   client: "mysql",
   connection: {
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
+    host: process.env.DBHOST,
+    user: process.env.DBNAME,
+    password: process.env.DBPASSWORD,
+    database: process.env.DBUSER,
   },
   pool: {
     min: 2,

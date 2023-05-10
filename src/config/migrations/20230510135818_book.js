@@ -15,8 +15,8 @@ exports.up = function (knex) {
     table.integer("id_autor").notNullable().unsigned()
     table.integer("id_editora").notNullable().unsigned()
 
-    table.foreign("id_autor").references("id").inTable("others")
-    table.foreign("id_editora").references("id").inTable("publishing_company")
+    // table.foreign("id_autor").references("id").inTable("others")
+    // table.foreign("id_editora").references("id").inTable("publishing_company")
   })
 }
 
