@@ -9,8 +9,8 @@ const object = Joi.object().keys({
   isbn: Joi.string().length(13),
   num_exemplares: Joi.number().required(),
   idioma: Joi.string().required().max(50),
-  id_autor: Joi.number().required().unsigned(),
-  id_editora: Joi.number().required().unsigned(),
+  id_autor: Joi.number().required(),
+  id_editora: Joi.number().required(),
 })
 
 module.exports = {
