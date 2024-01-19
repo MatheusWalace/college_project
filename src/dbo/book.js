@@ -27,7 +27,6 @@ module.exports = {
       const result = await db(tableName).insert(data)
       return result
     } catch (error) {
-      console.log(error)
       return null
     }
   },

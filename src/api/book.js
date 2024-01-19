@@ -20,8 +20,8 @@ const search = async (req, res) => {
 const insert = async (req, res) => {
   const object = req.body
   const result = await facade.insert(object)
-  if (result.errors) {
-    return res.status(400).send(result.errors)
+  if (!result) {
+    return res.status(400)
   }
   return res.sendStatus(204)
 }

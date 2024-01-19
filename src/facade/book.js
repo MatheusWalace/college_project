@@ -3,7 +3,7 @@ const validation = require("../model/book")
 const tablename = "book"
 
 const get = async () => {
-  return await dbo.get(tablename)
+  return await dbo.getAll(tablename)
 }
 
 const getById = async (id) => {
@@ -29,8 +29,7 @@ const insert = async (object) => {
     const errors = error.details.map((el) => el.message)
     return { errors }
   }
-
-  return await dbo.insert(object, tablename)
+  return await dbo.create(tablename, object)
 }
 
 const update = async (object, id) => {
