@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("book", (table) => {
+  return knex.schema.createTable("inbook", (table) => {
     table.increments("id").primary()
     table.string("titulo").notNullable()
     table.integer("edicao")
@@ -15,8 +15,8 @@ exports.up = function (knex) {
     table.integer("id_autor").notNullable().unsigned()
     table.integer("id_editora").notNullable().unsigned()
 
-    // table.foreign("id_autor").references("id").inTable("others")
-    // table.foreign("id_editora").references("id").inTable("publishing_company")
+    table.foreign("id_autor").references("others.id")
+    table.foreign("id_editora").references("company.id")
   })
 }
 

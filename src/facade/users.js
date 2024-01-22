@@ -1,17 +1,7 @@
-const dbo = require("../dbo/book")
-const validation = require("../model/book")
-const tablename = "inbook"
-
-const get = async () => {
-  return await dbo.getAll(tablename)
-}
-
-const getById = async (id) => {
-  if (!id) {
-    return false
-  }
-  return await dbo.getById(tablename, id)
-}
+const dbo = require("../dbo/users")
+const validation = require("../model/users")
+const bcrypt = require("bcrypt");
+const tablename = "users"
 
 const insert = async (object) => {
   try {
@@ -19,11 +9,17 @@ const insert = async (object) => {
       abortEarly: false,
     })
   } catch (error) {
-    console.log(error);
     const errors = error.details.map((el) => el.message)
     return { errors }
   }
-  return await dbo.create(tablename, object)
+  const {password} = object
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const data = {
+    ...object,
+    password: hashedPassword
+  }
+  return await dbo.create(tablename, data)
 }
 
 const update = async (id, object) => {
@@ -38,7 +34,15 @@ const update = async (id, object) => {
     const errors = error.details.map((el) => el.message)
     return { errors }
   }
-  return await dbo.update(tablename, id, object)
+
+  const {password} = object
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const data = {
+    ...object,
+    password: hashedPassword
+  }
+  return await dbo.update(tablename, id, data)
 }
 
 const remove = async (id) => {
@@ -49,8 +53,6 @@ const remove = async (id) => {
 }
 
 module.exports = {
-  get,
-  getById,
   insert,
   update,
   remove,

@@ -17,15 +17,22 @@ module.exports = {
       const result = await db(tableName).where("id", id).first()
       return result
     } catch (error) {
-      console.log(error)
       return null
     }
   },
 
   create: async (tableName, data) => {
     try {
-      const result = await db(tableName).insert(data)
-      return result
+      const idAutor = await db("others").select("id")
+      const idEditora = await db("company").select("id")
+      if (idAutor && idEditora) {
+        const result = await db(tableName).insert({
+          ...data,
+          id_autor: idAutor[0].id, 
+          id_editora: idEditora[0].id
+        })
+        return result
+      }
     } catch (error) {
       return null
     }
@@ -36,7 +43,6 @@ module.exports = {
       const result = await db(tableName).where("id", id).update(data)
       return result
     } catch (error) {
-      console.log(error)
       return null
     }
   },
